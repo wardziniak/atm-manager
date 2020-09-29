@@ -22,6 +22,7 @@ trait TopologyBuilder {
 trait AtmTopologyBuilder extends TopologyBuilder with LazyLogging {
   override def buildTopology(streamsBuilder: StreamsBuilder, atmConfig: AtmConfiguration): Topology = {
     val accountStateStore = atmConfig.accountInfo.accountStateStore
+    // It is safe to use different key for state store becasue assuption is that messages are partitioned according to AccountNumber
     val accountStoreSupplier: StoreBuilder[KeyValueStore[AccountNumber, Account]] = Stores.keyValueStoreBuilder[AccountNumber, Account](
       Stores.persistentKeyValueStore(accountStateStore),
       Serdes.AccountNumberSerde,
