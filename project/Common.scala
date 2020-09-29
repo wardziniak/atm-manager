@@ -1,5 +1,5 @@
-import sbt.Keys._
-import sbt.{Developer, ScmInfo, URL, url}
+import sbt.Keys.{mainClass, _}
+import sbt.{Compile, Developer, ScmInfo, URL, url}
 
 /**
   * Created by wardziniak on 28.09.2020.
@@ -25,6 +25,7 @@ object Common {
     description           := "Some description of project",
     licenses              := List("Apache 2" -> new URL("http://www.apache.org/licenses/LICENSE-2.0.txt")),
     homepage              := Some(url("https://github.com/wardziniak/atm-manager")),
-    libraryDependencies   ++= Dependencies.AtmDependencies
+    libraryDependencies   ++= Dependencies.AtmDependencies,
+    mainClass in Compile   := Some("com.wardziniak.atm.app.AtmApp")
   )
 }

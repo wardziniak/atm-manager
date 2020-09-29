@@ -1,0 +1,6 @@
+version: '3.6'
+services:
+  atm-manager:
+    image: atm-manager:1.0
+    environment:
+      BOOTSTRAP_SERVER: 192.168.8.101:9092
